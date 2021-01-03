@@ -1,0 +1,90 @@
+{
+	"name": "mdn-search",
+	"displayName": "MDN search",
+	"description": "mdn search",
+	"version": "1.0.0",
+	"author": "Ajanuw",
+	"icon": "images/logo.png",
+	"publisher": "ajanuw",
+	"homepage": "https://github.com/januwA/vscode-mdn-search",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/januwA/vscode-mdn-search.git"
+	},
+	"keywords": [
+		"MDN",
+		"vscode mdn",
+		"Ajanuw"
+	],
+	"engines": {
+		"vscode": "^1.52.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:mdn-search.helloWorld"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "MDN Search Configuration",
+			"properties": {
+				"mdnSearch.url": {
+					"type": "string",
+					"default": "https://developer.mozilla.org/en-US/search?q=${q}",
+					"description": "mdn search url"
+				}
+			}
+		},
+		"commands": [
+			{
+				"command": "mdn-search.helloWorld",
+				"title": "mdn search"
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "mdn-search.helloWorld",
+					"when": "editorHasSelection"
+				}
+			],
+			"editor/context": [
+				{
+					"command": "mdn-search.helloWorld",
+					"when": "editorHasSelection"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run package",
+		"compile": "webpack --config ./build/node-extension.webpack.config.js",
+		"watch": "webpack --watch --config ./build/node-extension.webpack.config.js",
+		"package": "webpack --mode production --devtool hidden-source-map --config ./build/node-extension.webpack.config.js",
+		"test-compile": "tsc -p ./",
+		"test-watch": "tsc -watch -p ./",
+		"pretest": "npm run test-compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.52.0",
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.0.4",
+		"@types/node": "^12.11.7",
+		"eslint": "^7.15.0",
+		"@typescript-eslint/eslint-plugin": "^4.9.0",
+		"@typescript-eslint/parser": "^4.9.0",
+		"glob": "^7.1.6",
+		"mocha": "^8.1.3",
+		"typescript": "^4.1.2",
+		"vscode-test": "^1.4.1",
+		"ts-loader": "^8.0.11",
+		"webpack": "^5.10.0",
+		"webpack-cli": "^4.2.0"
+	},
+	"license": "MIT"
+}
