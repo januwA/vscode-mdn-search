@@ -35,7 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
         // open url
         const url = selection.description!.replace(/\${q}/, selectText);
         vscode.env.openExternal(vscode.Uri.parse(url));
-        vscode.window.showInformationMessage(url);
+        // vscode.window.showInformationMessage(url);
       });
     }
   );
