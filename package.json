@@ -1,8 +1,8 @@
 {
-	"name": "mdn-search",
-	"displayName": "MDN search",
-	"description": "mdn search",
-	"version": "1.0.0",
+	"name": "net-search",
+	"displayName": "net search",
+	"description": "net search",
+	"version": "2.0.0",
 	"author": "Ajanuw",
 	"icon": "images/logo.png",
 	"publisher": "ajanuw",
@@ -12,8 +12,7 @@
 		"url": "https://github.com/januwA/vscode-mdn-search.git"
 	},
 	"keywords": [
-		"MDN",
-		"vscode mdn",
+		"net search",
 		"Ajanuw"
 	],
 	"engines": {
@@ -23,37 +22,37 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:mdn-search.helloWorld"
+		"onCommand:net-search.helloWorld"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"configuration": {
 			"type": "object",
-			"title": "MDN Search Configuration",
+			"title": "net search configuration",
 			"properties": {
-				"mdnSearch.url": {
-					"type": "string",
-					"default": "https://developer.mozilla.org/en-US/search?q=${q}",
-					"description": "mdn search url"
+				"netSearch.urls": {
+					"type": "array",
+					"default": [],
+					"description": "net search"
 				}
 			}
 		},
 		"commands": [
 			{
-				"command": "mdn-search.helloWorld",
-				"title": "mdn search"
+				"command": "net-search.helloWorld",
+				"title": "net search"
 			}
 		],
 		"menus": {
 			"commandPalette": [
 				{
-					"command": "mdn-search.helloWorld",
+					"command": "net-search.helloWorld",
 					"when": "editorHasSelection"
 				}
 			],
 			"editor/context": [
 				{
-					"command": "mdn-search.helloWorld",
+					"command": "net-search.helloWorld",
 					"when": "editorHasSelection"
 				}
 			]

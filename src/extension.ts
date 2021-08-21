@@ -1,6 +1,9 @@
 import * as vscode from "vscode";
 
-const K_URL = "https://developer.mozilla.org/en-US/search?q=${q}";
+type netSearch = {
+  label: string;
+  url: string;
+};
 
 // 激活您的扩展程序时将调用此方法
 // 您的扩展程序在第一次执行命令时被激活
@@ -9,23 +12,31 @@ export function activate(context: vscode.ExtensionContext) {
   // 现在使用registerCommand提供命令的实现
   // commandId参数必须与package.json中的command字段匹配
   let disposable = vscode.commands.registerCommand(
-    "mdn-search.helloWorld",
+    "net-search.helloWorld",
     () => {
       const editor = vscode.window.activeTextEditor;
       if (!editor) return;
 
       const selectText: string = editor.document.getText(editor.selection);
 
-      let url: string =
-        vscode.workspace.getConfiguration("mdnSearch")["url"] ?? K_URL;
+      // get config
+      const netSearch: any[] =
+        vscode.workspace.getConfiguration("netSearch").get("urls") ?? [];
 
-      if (/^https?:\/\//.test(url)) {
-        url = url.replace(/\${q}/, selectText);
+      // picker
+      const items: vscode.QuickPickItem[] = netSearch.map((e: netSearch) => ({
+        label: e.label,
+        description: e.url,
+      }));
+
+      vscode.window.showQuickPick(items).then((selection) => {
+        if (!selection) return;
+
+        // open url
+        const url = selection.description!.replace(/\${q}/, selectText);
         vscode.env.openExternal(vscode.Uri.parse(url));
-        // vscode.window.showInformationMessage(url);
-      } else {
-        vscode.window.showErrorMessage(`${url} is bad.`);
-      }
+        vscode.window.showInformationMessage(url);
+      });
     }
   );
 

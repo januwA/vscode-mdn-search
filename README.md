@@ -1,17 +1,21 @@
-# mdn-search
+# net search
 
-![](./images/2021-01-03-15-28-53.png)
+![](./images/2021-08-21-09-21-33.png)
 
-1. Select text
-2. right click
-3. Left click "mdn search"
+vscode settings.json
 
-The above picture will use a browser to open "https://developer.mozilla.org/en-US/search?q=alert"
-
-If you want to open "https://developer.mozilla.org/zh-CN/search?q=alert", then you need to add in "settings.json"
-  ```json
+```json
   {
-    "mdnSearch.url": "https://developer.mozilla.org/zh-CN/search?q=${q}"
+  "netSearch.urls": [
+      {
+        "label": "MDN",
+        "url": "https://developer.mozilla.org/zh-CN/search?q=${q}"
+      },
+      {
+        "label": "uniapp",
+        "url": "https://www.google.com/search?q=uniapp ${q}"
+      }
+    ],
   }
   ```
 
